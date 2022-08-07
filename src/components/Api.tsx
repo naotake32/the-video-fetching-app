@@ -14,37 +14,62 @@ const Api = (props:ParamType) => {
 
     const onClickSearch =() => {
         console.log("sent to the param:", inputKeyword);
+        const params = {
+            key:API_KEY,
+            q:inputKeyword,
+            type:"video",
+            maxResults:"1",
+            order: "viewCount",
+        }
+        const queryParams = new URLSearchParams(params);
+    
+       
+            fetch(YOUTUBE_SEARCH_API_URI + queryParams)
+            .then((res) => res.json())
+            .then(
+                (result) => {
+                    console.log("API success:" , result);
+    
+                    if(result.items && result.items.length !== 0){
+                        const firstItem = result.items[0];
+                        setVideoId(firstItem.id.videoId);
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
       }
 
-    useEffect(() =>{
+    // useEffect(() =>{
 
-    //define the query string
-    const params = {
-        key:API_KEY,
-        q:inputKeyword,
-        type:"video",
-        maxResults:"1",
-        order: "viewCount",
-    }
-    const queryParams = new URLSearchParams(params);
+    // //define the query string
+    // const params = {
+    //     key:API_KEY,
+    //     q:inputKeyword,
+    //     type:"video",
+    //     maxResults:"1",
+    //     order: "viewCount",
+    // }
+    // const queryParams = new URLSearchParams(params);
 
    
-        fetch(YOUTUBE_SEARCH_API_URI + queryParams)
-        .then((res) => res.json())
-        .then(
-            (result) => {
-                console.log("API success:" , result);
+    //     fetch(YOUTUBE_SEARCH_API_URI + queryParams)
+    //     .then((res) => res.json())
+    //     .then(
+    //         (result) => {
+    //             console.log("API success:" , result);
 
-                if(result.items && result.items.length !== 0){
-                    const firstItem = result.items[0];
-                    setVideoId(firstItem.id.videoId);
-                }
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
-    },[])
+    //             if(result.items && result.items.length !== 0){
+    //                 const firstItem = result.items[0];
+    //                 setVideoId(firstItem.id.videoId);
+    //             }
+    //         },
+    //         (error) => {
+    //             console.log(error);
+    //         }
+    //     );
+    // },[])
 
 
     return (
