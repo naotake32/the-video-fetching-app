@@ -16,6 +16,10 @@ export const App = () => {
     <>
       <div>
         <h1>Video-Fetching</h1>
+        <Api
+        inputKeyword={inputKeyword}
+        />
+      </div>
         <div className='input-wrapper'>
           <p>enter the keyword</p>
           <input onChange={(e) => {
@@ -24,10 +28,6 @@ export const App = () => {
           }} type="text" />
 
         </div>
-        <Api
-        inputKeyword={inputKeyword}
-        />
-      </div>
     </>
   );
 }
