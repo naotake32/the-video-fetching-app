@@ -5,7 +5,7 @@ type ParamType = {
   } 
 
 const YOUTUBE_SEARCH_API_URI = "https://www.googleapis.com/youtube/v3/search?";
-const API_KEY = "AIzaSyAGcq6cYFwovcxEQhvZrFZOgiXUlMF0Ukg";
+const API_KEY = "APIKEY";
 
 const Api = (props:ParamType) => {
     
